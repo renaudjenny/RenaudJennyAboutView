@@ -12,9 +12,7 @@ public struct AboutView<Logo: View>: View {
     public var body: some View {
         ScrollView(.vertical) {
             HStack { Spacer() }
-            logo
-                .frame(width: 120, height: 120)
-                .padding()
+            logo.padding()
             VStack(spacing: 32) {
                 developmentCredit
                 openSourceCredit
@@ -124,6 +122,7 @@ struct AboutView_Previews: PreviewProvider {
             AboutView(appId: "id123456") {
                 Image(systemName: "questionmark.circle")
                     .resizable()
+                    .frame(width: 120, height: 120)
             }
         }
     }
