@@ -1,5 +1,6 @@
 import SwiftUI
 
+#if os(iOS)
 public struct AboutView<Logo: View, Background: View>: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @Environment(\.colorScheme) var colorScheme
@@ -53,7 +54,7 @@ public struct AboutView<Logo: View, Background: View>: View {
             }
             .background(background)
         }
-        .navigationBarTitle("About")
+        .navigationTitle("About")
     }
 
     private var developmentCredit: some View {
@@ -256,4 +257,5 @@ struct AboutViewInModalWithBackgroundLandscape_Previews: PreviewProvider {
         .environment(\.verticalSizeClass, .compact)
     }
 }
+#endif
 #endif
