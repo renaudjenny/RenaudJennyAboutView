@@ -1,8 +1,10 @@
 import XCTest
 @testable import RenaudJennyAboutView
 import SnapshotTesting
+import SwiftUI
 
 final class RenaudJennyAboutViewTests: XCTestCase {
+    #if !os(macOS)
     func testTheAboutView() {
         let previews = AboutView_Previews.previews
         assertSnapshot(matching: previews, as: .image(layout: .device(config: .iPhoneSe)))
@@ -41,4 +43,25 @@ final class RenaudJennyAboutViewTests: XCTestCase {
         ("testAboutViewInModalWithBackground", testAboutViewInModalWithBackground),
         ("testAboutViewInModalWithBackgroundLandscape", testAboutViewInModalWithBackgroundLandscape),
     ]
+
+    #else
+    func testTheAboutViewMacOS() {
+        let previews = AboutView_Previews.previews
+        let viewController = NSHostingView(rootView: previews)
+        viewController.frame = CGRect(x: 0, y: 0, width: 400, height: 800)
+        assertSnapshot(matching: viewController, as: .image)
+    }
+
+    func testAboutViewWithBackground() {
+        let previews = AboutViewWithBackground_Previews.previews
+        let viewController = NSHostingView(rootView: previews)
+        viewController.frame = CGRect(x: 0, y: 0, width: 400, height: 800)
+        assertSnapshot(matching: viewController, as: .image)
+    }
+
+    static var allTests = [
+        ("testTheAboutViewMacOS", testTheAboutViewMacOS),
+        ("testAboutViewWithBackground", testAboutViewWithBackground),
+    ]
+    #endif
 }

@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build-ios:
     runs-on: macOS-latest
 
     steps:
@@ -33,3 +33,11 @@ jobs:
 
     - name: Xcode test on iPhone SE
       run: xcodebuild clean test -scheme RenaudJennyAboutView-Package -destination 'platform=iOS Simulator,name=iPhone SE (1st generation)'
+  build-macos:
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Xcode test on Mac
+      run: xcodebuild clean test -scheme RenaudJennyAboutView-Package -destination 'platform=OS X'
