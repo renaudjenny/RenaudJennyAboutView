@@ -25,9 +25,6 @@ jobs:
     - name: Xcode version
       run: /usr/bin/xcodebuild -version
 
-    - name: Generate Xcode project
-      run: swift package generate-xcodeproj
-
     - name: Create iPhone SE Simulator
       run: xcrun simctl create "iPhone SE (1st generation)" "iPhone SE (1st generation)"
 
@@ -38,6 +35,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: List all available build targets and schemes
+      run: xcodebuild -list
 
     - name: Xcode test on Mac
       run: xcodebuild clean test -scheme RenaudJennyAboutView-Package -destination 'platform=OS X'
