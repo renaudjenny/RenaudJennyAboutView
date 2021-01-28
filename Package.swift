@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "RenaudJennyAboutView",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v14),
         .macOS(.v11),

@@ -31,7 +31,7 @@ public extension AboutView where Background == EmptyView {
 internal extension AboutView {
     var developmentCredit: some View {
         VStack {
-            Text("This application has been made by\nRenaud Jenny")
+            Text("This application has been made by\nRenaud Jenny", bundle: Bundle.module)
                 .multilineTextAlignment(.center)
                 .font(.body)
             WebLink(text: "@Renox0", url: .renox0Twitter)
@@ -40,7 +40,7 @@ internal extension AboutView {
 
     var openSourceCredit: some View {
         VStack {
-            Text("Based on open source projects you can find on my GitHub")
+            Text("Based on open source projects you can find on my GitHub", bundle: Bundle.module)
                 .multilineTextAlignment(.center)
                 .font(.body)
             WebLink(text: "https://github.com/renaudjenny", url: .renaudjennyGithub)
@@ -49,19 +49,20 @@ internal extension AboutView {
 
     var iconsAndIllustrationsCredit: some View {
         VStack {
-            Text("Icons and illustrations by\nMathilde Seyller")
+            Text("Icons and illustrations by\nMathilde Seyller", bundle: Bundle.module)
                 .multilineTextAlignment(.center)
                 .font(.body)
             WebLink(text: "@myobriel", url: .myobrielInstagram)
         }
     }
 
-    @ViewBuilder
     var rateThisApp: some View {
-        if let appStoreUrl = try? URL.appStoreWriteReview(appId: appId) {
-            WebLink(text: "Rate this application on the App Store", url: appStoreUrl)
-                .multilineTextAlignment(.center)
-
+        (try? URL.appStoreWriteReview(appId: appId)).map { appStoreUrl in
+            WebLink(
+                text: NSLocalizedString("Rate this application on the App Store", bundle: Bundle.module, comment: "Rate this app button"),
+                url: appStoreUrl
+            )
+            .multilineTextAlignment(.center)
         }
     }
 }

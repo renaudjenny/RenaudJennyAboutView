@@ -1,0 +1,20 @@
+/* Done button text */
+"Done" = "Terminé";
+
+/* Thank you text */
+"Thank you for your support!" = "Merci de votre soutien !";
+
+/* Title */
+"About" = "À propos";
+
+/* Development credit text */
+"This application has been made by\nRenaud Jenny" = "Cette application a été développée par \nRenaud Jenny";
+
+/* Open Source credit text */
+"Based on open source projects you can find on my GitHub" = "Elle est basée sur mes projets open source que vous pouvez trouver sur mon GitHub";
+
+/* Icons and illustrations credit text */
+"Icons and illustrations by\nMathilde Seyller" = "Icones et illustrations par\nMathilde Seyller";
+
+/* Rate this app button */
+"Rate this application on the App Store" = "Notez cette application sur l'App Store";

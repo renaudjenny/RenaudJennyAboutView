@@ -24,14 +24,14 @@ public struct AboutView<Logo: View, Background: View>: View {
             developmentCredit
             openSourceCredit
             iconsAndIllustrationsCredit
-            Text("Thank you for your support!")
+            Text("Thank you for your support!", bundle: Bundle.module)
                 .multilineTextAlignment(.center)
                 .font(.headline)
             rateThisApp
         }
         .padding()
         .background(background)
-        .navigationTitle("About")
+        .navigationTitle(NSLocalizedString("About", bundle: Bundle.module, comment: "Title"))
     }
 }
 

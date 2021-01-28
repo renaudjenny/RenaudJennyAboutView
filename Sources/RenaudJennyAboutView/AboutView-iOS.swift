@@ -33,7 +33,7 @@ public struct AboutView<Logo: View, Background: View>: View {
                     HStack {
                         Spacer()
                         Button(action: close) {
-                            Text("Done")
+                            Text("Done", bundle: Bundle.module)
                         }.padding()
                     }
                 }
@@ -44,7 +44,7 @@ public struct AboutView<Logo: View, Background: View>: View {
                     developmentCredit
                     openSourceCredit
                     iconsAndIllustrationsCredit
-                    Text("Thank you for your support!")
+                    Text("Thank you for your support!", bundle: Bundle.module)
                         .multilineTextAlignment(.center)
                         .font(.headline)
                     rateThisApp
@@ -54,7 +54,7 @@ public struct AboutView<Logo: View, Background: View>: View {
             }
             .background(background)
         }
-        .navigationTitle("About")
+        .navigationTitle(NSLocalizedString("About", bundle: Bundle.module, comment: "Title"))
     }
 
     private func close() {
@@ -152,6 +152,19 @@ struct AboutViewInModalWithBackgroundLandscape_Previews: PreviewProvider {
         .edgesIgnoringSafeArea(.all)
         .previewLayout(.fixed(width: 568, height: 320))
         .environment(\.verticalSizeClass, .compact)
+    }
+}
+
+struct AboutViewFrench_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            AboutView(appId: "id123456") {
+                Image(systemName: "questionmark.circle")
+                    .resizable()
+                    .frame(width: 120, height: 120)
+            }
+        }
+        .environment(\.locale, .init(identifier: "fr"))
     }
 }
 #endif
