@@ -30,95 +30,43 @@ public extension AboutView where Background == EmptyView {
 
 internal extension AboutView {
     var developmentCredit: some View {
-        VStack {
-            Text("This application has been made by\nRenaud Jenny", bundle: Bundle.module)
-                .multilineTextAlignment(.center)
-                .font(.body)
-            WebLink(text: "@Renox0", url: .renox0Twitter)
-        }
+        Text(
+            "This application has been made by [Renaud Jenny](https://pouet.chapril.org/@renaudjenny)",
+            bundle: Bundle.module
+        )
+        .multilineTextAlignment(.center)
+        .font(.body)
     }
 
     var openSourceCredit: some View {
-        VStack {
-            Text("Based on open source projects you can find on my GitHub", bundle: Bundle.module)
-                .multilineTextAlignment(.center)
-                .font(.body)
-            WebLink(text: "https://github.com/renaudjenny", url: .renaudjennyGithub)
-        }
+        Text(
+            "Based on open source projects you can find on my [GitHub](https://github.com/renaudjenny)",
+            bundle: Bundle.module
+        )
+        .multilineTextAlignment(.center)
+        .font(.body)
     }
 
     var iconsAndIllustrationsCredit: some View {
-        VStack {
-            Text("Icons and illustrations by\nMathilde Seyller", bundle: Bundle.module)
-                .multilineTextAlignment(.center)
-                .font(.body)
-            WebLink(text: "@myobriel", url: .myobrielInstagram)
-        }
+        Text(
+            "Icons and illustrations by [Mathilde Seyller](https://www.instagram.com/myobriel)",
+            bundle: Bundle.module
+        )
+        .multilineTextAlignment(.center)
+        .font(.body)
     }
 
     var rateThisApp: some View {
-        (try? URL.appStoreWriteReview(appId: appId)).map { appStoreUrl in
-            WebLink(
-                text: NSLocalizedString("Rate this application on the App Store", bundle: Bundle.module, comment: "Rate this app button"),
-                url: appStoreUrl
-            )
-            .multilineTextAlignment(.center)
-        }
-    }
-}
-
-struct WebLink: View {
-    let text: String
-    let url: URL
-
-    var body: some View {
-        Button(action: openURL) {
-            Text(text)
-        }
+        Text(
+            .init("[Rate this application on the App Store](itms-apps://itunes.apple.com/app/\(appId)?action=write-review)"),
+            bundle: Bundle.module,
+            comment: "Rate this app button"
+        )
+        .multilineTextAlignment(.center)
+        .font(.callout)
     }
 
-    private func openURL() {
-        #if os(macOS)
-        NSWorkspace.shared.open(url)
-        #else
-        UIApplication.shared.open(url)
-        #endif
+    var openSourcePackages: some View {
+        Text("TODO")
     }
-}
-
-private extension URL {
-    static var renox0Twitter: Self {
-        guard let url = Self(string: "https://twitter.com/Renox0") else {
-            fatalError("Cannot build the Twitter URL")
-        }
-        return url
-    }
-
-    static var renaudjennyGithub: Self {
-        guard let url = Self(string: "https://github.com/renaudjenny") else {
-            fatalError("Cannot build the Github URL")
-        }
-        return url
-    }
-
-    static var myobrielInstagram: Self {
-        guard let url = Self(string: "https://www.instagram.com/myobriel") else {
-            fatalError("Cannot build the instagram URL")
-        }
-        return url
-    }
-
-    static func appStoreWriteReview(appId: String) throws -> Self {
-        guard let url = Self(string: "itms-apps://itunes.apple.com/app/\(appId)?action=write-review") else {
-            #if DEBUG
-            print("Cannot build the AppStore URL, hence the Rate this application is not shown")
-            #endif
-            throw URLFormattingError.cannotBuildAppStoreURLWithAppId(appId)
-        }
-        return url
-    }
-}
-
-public enum URLFormattingError: Error {
-    case cannotBuildAppStoreURLWithAppId(String)
 }

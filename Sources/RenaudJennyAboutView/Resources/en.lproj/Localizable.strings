@@ -7,14 +7,5 @@
 /* Title */
 "About" = "About";
 
-/* Development credit text */
-"This application has been made by\nRenaud Jenny" = "This application has been made by\nRenaud Jenny";
-
-/* Open Source credit text */
-"Based on open source projects you can find on my GitHub" = "Based on open source projects you can find on my GitHub";
-
-/* Icons and illustrations credit text */
-"Icons and illustrations by\nMathilde Seyller" = "Icons and illustrations by\nMathilde Seyller";
-
 /* Rate this app button */
 "Rate this application on the App Store" = "Rate this application on the App Store";

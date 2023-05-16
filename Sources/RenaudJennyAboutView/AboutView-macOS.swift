@@ -19,7 +19,7 @@ public struct AboutView<Logo: View, Background: View>: View {
     }
 
     public var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             logo
             developmentCredit
             openSourceCredit

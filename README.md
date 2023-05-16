@@ -6,7 +6,8 @@
 
 A straigtforward SwiftUI Library that provide the About View that I use in all my apps...
 
-* 🖼 I can change the displayed picture
-* 📲 I can change the AppId to rate the app directly on the AppStore
+* 🖼 Custom the displayed picture
+* 📲 Custom the AppId to rate the app directly on the AppStore
+* 👩‍💻 Custom Open Sources packages listing 
 
 That's all, everything else is the same 😬.
