@@ -7,43 +7,33 @@ final class RenaudJennyAboutViewTests: XCTestCase {
     #if !os(macOS)
     func testTheAboutView() {
         let previews = AboutView_Previews.previews
-        assertSnapshot(matching: previews, as: .image(layout: .device(config: .iPhoneSe)))
+        assertSnapshot(matching: previews, as: .image(layout: .fixed(width: 800, height: 400)))
     }
 
     func testAboutViewInModal() {
         let previews = AboutViewInModal_Previews.previews
-        assertSnapshot(matching: previews, as: .image(layout: .device(config: .iPhoneSe)))
+        assertSnapshot(matching: previews, as: .image(layout: .fixed(width: 800, height: 400)))
     }
 
     func testAboutViewInModalDarkMode() {
         let previews = AboutViewInModalDarkMode_Previews.previews
-        assertSnapshot(matching: previews, as: .image(layout: .device(config: .iPhoneSe)))
+        assertSnapshot(matching: previews, as: .image(layout: .fixed(width: 800, height: 400)))
     }
 
     func testAboutViewInModalLandscape() {
         let previews = AboutViewInModalLandscape_Previews.previews
-        assertSnapshot(matching: previews, as: .image(layout: .device(config: .iPhoneSe(.landscape))))
+        assertSnapshot(matching: previews, as: .image(layout: .fixed(width: 400, height: 800)))
     }
 
     func testAboutViewInModalWithBackground() {
         let previews = AboutViewInModalWithBackground_Previews.previews
-        assertSnapshot(matching: previews, as: .image(layout: .device(config: .iPhoneSe)))
+        assertSnapshot(matching: previews, as: .image(layout: .fixed(width: 800, height: 400)))
     }
 
     func testAboutViewInModalWithBackgroundLandscape() {
         let previews = AboutViewInModalWithBackgroundLandscape_Previews.previews
-        assertSnapshot(matching: previews, as: .image(layout: .device(config: .iPhoneSe(.landscape))))
+        assertSnapshot(matching: previews, as: .image(layout: .fixed(width: 400, height: 800)))
     }
-
-    static var allTests = [
-        ("testTheAboutView", testTheAboutView),
-        ("testAboutViewInModal", testAboutViewInModal),
-        ("testAboutViewInModalDarkMode", testAboutViewInModalDarkMode),
-        ("testAboutViewInModalLandscape", testAboutViewInModalLandscape),
-        ("testAboutViewInModalWithBackground", testAboutViewInModalWithBackground),
-        ("testAboutViewInModalWithBackgroundLandscape", testAboutViewInModalWithBackgroundLandscape),
-    ]
-
     #else
     func testTheAboutViewMacOS() {
         let previews = AboutView_Previews.previews
@@ -58,10 +48,5 @@ final class RenaudJennyAboutViewTests: XCTestCase {
         viewController.frame = CGRect(x: 0, y: 0, width: 400, height: 800)
         assertSnapshot(matching: viewController, as: .image)
     }
-
-    static var allTests = [
-        ("testTheAboutViewMacOS", testTheAboutViewMacOS),
-        ("testAboutViewWithBackground", testAboutViewWithBackground),
-    ]
     #endif
 }
