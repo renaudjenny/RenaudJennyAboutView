@@ -6,14 +6,17 @@ public struct AboutView<Logo: View, Background: View>: View {
 
     let appId: String
     let logo: Logo
+    let openSourceLibraries: [OpenSourceLibrary]
     var background: Background
 
     public init(
         appId: String,
+        openSourceLibraries: [OpenSourceLibrary] = [.snapshotTesting],
         @ViewBuilder logo: () -> Logo,
         @ViewBuilder background: () -> Background
     ) {
         self.appId = appId
+        self.openSourceLibraries = openSourceLibraries
         self.logo = logo()
         self.background = background()
     }

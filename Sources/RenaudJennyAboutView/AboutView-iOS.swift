@@ -9,16 +9,19 @@ public struct AboutView<Logo: View, Background: View>: View {
     let appId: String
     let logo: Logo
     let isInModal: Bool
+    let openSourceLibraries: [OpenSourceLibrary]
     var background: Background
 
     public init(
         appId: String,
         isInModal: Bool = false,
+        openSourceLibraries: [OpenSourceLibrary] = [.snapshotTesting],
         @ViewBuilder logo: () -> Logo,
         @ViewBuilder background: () -> Background
     ) {
         self.appId = appId
         self.isInModal = isInModal
+        self.openSourceLibraries = openSourceLibraries
         self.logo = logo()
         self.background = background()
     }

@@ -4,10 +4,12 @@ public extension AboutView where Background == EmptyView {
     #if os(macOS)
     init(
         appId: String,
+        openSourceLibraries: [OpenSourceLibrary] = [.snapshotTesting],
         @ViewBuilder logo: () -> Logo
     ) {
         self.init(
             appId: appId,
+            openSourceLibraries: openSourceLibraries,
             logo: logo,
             background: { EmptyView() }
         )
@@ -16,11 +18,13 @@ public extension AboutView where Background == EmptyView {
     init(
         appId: String,
         isInModal: Bool = false,
+        openSourceLibraries: [OpenSourceLibrary] = [.snapshotTesting],
         @ViewBuilder logo: () -> Logo
     ) {
         self.init(
             appId: appId,
             isInModal: isInModal,
+            openSourceLibraries: openSourceLibraries,
             logo: logo,
             background: { EmptyView() }
         )
