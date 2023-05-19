@@ -15,49 +15,53 @@ public struct AboutView<Logo: View, Background: View>: View {
     public init(
         appId: String,
         isInModal: Bool = false,
-        openSourceLibraries: [OpenSourceLibrary] = [.snapshotTesting],
+        openSourceLibraries: [OpenSourceLibrary] = [],
         @ViewBuilder logo: () -> Logo,
         @ViewBuilder background: () -> Background
     ) {
         self.appId = appId
         self.isInModal = isInModal
-        self.openSourceLibraries = openSourceLibraries
+        self.openSourceLibraries = openSourceLibraries + [.snapshotTesting]
         self.logo = logo()
         self.background = background()
     }
 
     public var body: some View {
-        ScrollView(.vertical) {
-            HStack { Spacer() }
-            if isInModal {
-                if verticalSizeClass == .regular {
-                    closeCapsule
-                } else {
-                    HStack {
-                        Spacer()
-                        Button(action: close) {
-                            Text("Done", bundle: Bundle.module)
-                        }.padding()
+        NavigationStack {
+            ScrollView(.vertical) {
+                HStack { Spacer() }
+                if isInModal {
+                    if verticalSizeClass == .regular {
+                        closeCapsule
+                    } else {
+                        HStack {
+                            Spacer()
+                            Button(action: close) {
+                                Text("Done", bundle: Bundle.module)
+                            }.padding()
+                        }
                     }
                 }
-            }
-            VStack {
-                logo.padding()
-                VStack(spacing: 32) {
-                    developmentCredit
-                    openSourceCredit
-                    iconsAndIllustrationsCredit
-                    Text("Thank you for your support!", bundle: Bundle.module)
-                        .multilineTextAlignment(.center)
-                        .font(.headline)
-                    rateThisApp
-                }
-                .padding()
+                VStack {
+                    logo.padding()
+                    VStack(spacing: 32) {
+                        developmentCredit
+                        openSourceCredit
+                        iconsAndIllustrationsCredit
+                        Text("Thank you for your support!", bundle: Bundle.module)
+                            .multilineTextAlignment(.center)
+                            .font(.headline)
+                        rateThisApp
+                    }
+                    .padding()
 
+                }
+                .background(background)
+
+                NavigationLink("Acknowledgement") { AcknowledgementView(libraries: openSourceLibraries) }
             }
-            .background(background)
+            .navigationTitle(NSLocalizedString("About", bundle: Bundle.module, comment: "Title"))
         }
-        .navigationTitle(NSLocalizedString("About", bundle: Bundle.module, comment: "Title"))
     }
 
     private func close() {

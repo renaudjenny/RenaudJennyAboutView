@@ -11,30 +11,34 @@ public struct AboutView<Logo: View, Background: View>: View {
 
     public init(
         appId: String,
-        openSourceLibraries: [OpenSourceLibrary] = [.snapshotTesting],
+        openSourceLibraries: [OpenSourceLibrary] = [],
         @ViewBuilder logo: () -> Logo,
         @ViewBuilder background: () -> Background
     ) {
         self.appId = appId
-        self.openSourceLibraries = openSourceLibraries
+        self.openSourceLibraries = openSourceLibraries + [.snapshotTesting]
         self.logo = logo()
         self.background = background()
     }
 
     public var body: some View {
-        VStack(spacing: 20) {
-            logo
-            developmentCredit
-            openSourceCredit
-            iconsAndIllustrationsCredit
-            Text("Thank you for your support!", bundle: Bundle.module)
-                .multilineTextAlignment(.center)
-                .font(.headline)
-            rateThisApp
+        NavigationStack {
+            VStack(spacing: 20) {
+                logo
+                developmentCredit
+                openSourceCredit
+                iconsAndIllustrationsCredit
+                Text("Thank you for your support!", bundle: Bundle.module)
+                    .multilineTextAlignment(.center)
+                    .font(.headline)
+                rateThisApp
+                
+                NavigationLink("Acknowledgement") { AcknowledgementView(libraries: openSourceLibraries) }
+            }
+            .padding()
+            .background(background)
+            .navigationTitle(NSLocalizedString("About", bundle: Bundle.module, comment: "Title"))
         }
-        .padding()
-        .background(background)
-        .navigationTitle(NSLocalizedString("About", bundle: Bundle.module, comment: "Title"))
     }
 }
 
